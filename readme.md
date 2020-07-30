@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/NeverWalkAloner/async-blogs.svg?branch=master)](https://travis-ci.org/NeverWalkAloner/async-blogs)
 
-# Asynchronous Blogs API with FastAPI
+# Asynchronous API implementation with Python FastAPI
 
 ## How to run
 
