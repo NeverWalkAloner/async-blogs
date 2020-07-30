@@ -1,0 +1,21 @@
+#docker-compose.yml
+version: "3.0"
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      DB_USER: root
+      DB_HOST: db
+      DB_PASSWORD: root
+    ports:
+      - "8000:8000"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: async-blogs
+      POSTGRES_PASSWORD: root
