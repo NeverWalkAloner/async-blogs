@@ -17,6 +17,7 @@ def test_create_post(temp_db):
       "content": "Don't panic!"
     }
     with TestClient(app) as client:
+        # Create user and use his token to add new post
         loop = asyncio.get_event_loop()
         user_db = loop.run_until_complete(create_user(user))
         response = client.post(
@@ -67,6 +68,7 @@ def test_update_post(temp_db):
       "content": "Life? Don't talk to me about life."
     }
     with TestClient(app) as client:
+        # Create user token to add new post
         loop = asyncio.get_event_loop()
         token = loop.run_until_complete(create_user_token(user_id=1))
         response = client.put(

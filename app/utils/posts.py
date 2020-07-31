@@ -24,6 +24,8 @@ async def create_post(post: post_schema.PostModel, user):
         )
     )
     post = await database.fetch_one(query)
+
+    # Convert to dict and add user_name key to it
     post = dict(zip(post, post.values()))
     post["user_name"] = user["name"]
     return post

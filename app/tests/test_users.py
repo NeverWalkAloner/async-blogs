@@ -43,6 +43,7 @@ def test_login_with_invalid_password(temp_db):
 
 def test_user_detail(temp_db):
     with TestClient(app) as client:
+        # Create user token to see user info
         loop = asyncio.get_event_loop()
         token = loop.run_until_complete(create_user_token(user_id=1))
         response = client.get(
@@ -69,6 +70,7 @@ def test_user_detail_forbidden_with_expired_token(temp_db, freezer):
         password="unicorn"
     )
     with TestClient(app) as client:
+        # Create user and use expired token
         loop = asyncio.get_event_loop()
         user_db = loop.run_until_complete(create_user(user))
         freezer.move_to("'2015-11-10'")

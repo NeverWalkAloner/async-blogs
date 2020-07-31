@@ -16,8 +16,8 @@ def get_random_string(length=12):
 def hash_password(password: str, salt: str = None):
     if salt is None:
         salt = get_random_string()
-    dk = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 100_000)
-    return dk.hex()
+    enc = hashlib.pbkdf2_hmac("sha256", password.encode(), salt.encode(), 100_000)
+    return enc.hex()
 
 
 def validate_password(password: str, hashed_password: str):
