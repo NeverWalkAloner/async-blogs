@@ -13,6 +13,7 @@ services:
       DB_PASSWORD: root
     ports:
       - "8000:8000"
+    restart: always
   db:
     image: postgres
     environment:
