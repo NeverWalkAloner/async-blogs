@@ -12,7 +12,7 @@ async def health_check():
     return {"Hello": "World"}
 
 
-@router.post("/auth")
+@router.post("/auth", response_model=users.TokenBase)
 async def auth(form_data: OAuth2PasswordRequestForm = Depends()):
     user = await users_utils.get_user_by_email(email=form_data.username)
 
@@ -24,13 +24,7 @@ async def auth(form_data: OAuth2PasswordRequestForm = Depends()):
     ):
         raise HTTPException(status_code=400, detail="Incorrect email or password")
 
-    token = await users_utils.create_user_token(user_id=user["id"])
-
-    return {
-        "access_token": token["token"],
-        "expires": token["expires"],
-        "token_type": "bearer",
-    }
+    return await users_utils.create_user_token(user_id=user["id"])
 
 
 @router.post("/sign-up", response_model=users.User)

@@ -20,7 +20,7 @@ def test_sign_up(temp_db):
     assert response.json()["email"] == "vader@deathstar.com"
     assert response.json()["name"] == "Darth"
     assert response.json()["token"]["expires"] is not None
-    assert response.json()["token"]["token"] is not None
+    assert response.json()["token"]["access_token"] is not None
 
 
 def test_login(temp_db):

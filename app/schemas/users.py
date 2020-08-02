@@ -1,15 +1,17 @@
 from datetime import datetime
+from typing import Optional
 
-from pydantic import UUID4, BaseModel, EmailStr, validator
+from pydantic import UUID4, BaseModel, EmailStr, validator, Field
 
 
 class TokenBase(BaseModel):
     """ Return response data """
-    token: UUID4
+    token: UUID4 = Field(..., alias="access_token")
     expires: datetime
+    token_type: Optional[str] = "bearer"
 
     class Config:
-        orm_mode = True
+        allow_population_by_field_name = True
 
     @validator("token")
     def hexlify_token(cls, value):
