@@ -7,7 +7,7 @@ click==7.1.2
 databases==0.3.2
 dnspython==1.16.0
 email-validator==1.1.1
-fastapi==0.60.1
+fastapi==0.65.2
 freezegun==0.3.15
 h11==0.9.0
 httptools==0.1.1
