@@ -15,9 +15,9 @@ async def create_post(post: PostModel, current_user: User = Depends(get_current_
 
 @router.get("/posts")
 async def get_posts(page: int = 1):
-    total_cout = await post_utils.get_posts_count()
+    total_count = await post_utils.get_posts_count()
     posts = await post_utils.get_posts(page)
-    return {"total_count": total_cout, "results": posts}
+    return {"total_count": total_count, "results": posts}
 
 
 @router.get("/posts/{post_id}", response_model=PostDetailsModel)
