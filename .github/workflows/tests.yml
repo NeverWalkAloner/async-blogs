@@ -15,7 +15,7 @@ jobs:
       run: docker compose -f "docker-compose.yml" up -d --build
 
     - name: Run tests
-      run: docker compose -f "docker-compose.yml"  exec -T app pytest app/tests
+      run: docker compose -f "docker-compose.yml"  exec -T app python -m pytest app/tests
 
     - name: Stop containers
       if: always()
