@@ -6,7 +6,8 @@ services:
     volumes:
       - .:/async-blogs
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DB_USER: root
       DB_HOST: db
@@ -24,7 +25,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_HOST_AUTH_METHOD: trust
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U root -D async-blogs" ]
+      test: [ "CMD-SHELL", "pg_isready", "-d", "async-blogs", "-U", "root"]
       interval: 5s
       timeout: 5s
       retries: 5
