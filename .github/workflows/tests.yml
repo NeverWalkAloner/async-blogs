@@ -1,0 +1,22 @@
+name: Test
+
+on: [push]
+
+jobs:
+  docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Start containers
+      run: docker-compose -f "docker-compose.yml" up -d --build
+
+    - name: Run tests
+      run: docker-compose -f "docker-compose.yml"  exec app python -m pytest app/tests
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose -f "docker-compose.yml" down
