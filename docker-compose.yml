@@ -24,7 +24,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_HOST_AUTH_METHOD: trust
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U root" ]
+      test: [ "CMD-SHELL", "pg_isready -U root -D async-blogs" ]
       interval: 5s
       timeout: 5s
       retries: 5
